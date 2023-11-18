@@ -4,8 +4,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import requestBody.Login;
-import responseBody.User;
+import requestbody.Login;
+import responsebody.User;
 
 public class LoginTC {
 

@@ -2,10 +2,10 @@ import data.GlobalVariables;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import responseBody.User;
+import responsebody.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import requestBody.Register;
+import requestbody.Register;
 
 public class SamplePOSTRequest {
 

@@ -1,4 +1,4 @@
-package responseBody;
+package responsebody;
 
 import lombok.Getter;
 import lombok.Setter;
