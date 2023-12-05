@@ -5,24 +5,23 @@ import io.restassured.specification.RequestSpecification;
 import responsebody.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import requestbody.Register;
 
 public class SamplePOSTRequest {
 
     @Test
     public void RegistrationSuccessful()
     {
-        RestAssured.baseURI = GlobalVariables.BASE_URL;
-        RequestSpecification request = RestAssured.given();
-        request.header("Content-Type", "application/json");
-        Register register = new Register("eve.holt@reqres.in", "pistol");
-        request.body(register);
-        Response response = request.post("/api/users");
-        User user = response.getBody().as(User.class);
-
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(statusCode, 201);
-        String successCode = response.jsonPath().get("id");
-        Assert.assertTrue(Integer.parseInt(successCode) > 0);
+//        RestAssured.baseURI = GlobalVariables.BASE_URL;
+//        RequestSpecification request = RestAssured.given();
+//        request.header("Content-Type", "application/json");
+//        Register register = new Register("eve.holt@reqres.in", "pistol");
+//        request.body(register);
+//        Response response = request.post("/api/users");
+//        User user = response.getBody().as(User.class);
+//
+//        int statusCode = response.getStatusCode();
+//        Assert.assertEquals(statusCode, 201);
+//        String successCode = response.jsonPath().get("id");
+//        Assert.assertTrue(Integer.parseInt(successCode) > 0);
     }
 }

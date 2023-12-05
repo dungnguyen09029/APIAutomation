@@ -1,5 +1,6 @@
 package request;
 
+import data.GlobalVariables;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -9,11 +10,11 @@ import org.json.simple.JSONObject;
 import java.util.Map;
 
 public class RequestHandler {
-    private String baseURL;
+
+    private String baseUrl;
     private String path;
     private Method method; // GET, POST...
     private Map<String, String> header;
-    private static final String PROTOCOL_PREFIX = "://";
 
     private RequestSpecification httpRequest;
 
@@ -25,8 +26,8 @@ public class RequestHandler {
         this.path = path;
         // http or https
         this.method = method;
-        this.baseURL = protocol + PROTOCOL_PREFIX + baseURl;
-        RestAssured.baseURI = baseURL;
+        this.baseUrl = protocol + GlobalVariables.BASE_URL_PREFIX + baseURl;
+        RestAssured.baseURI = baseUrl;
         httpRequest = RestAssured.given();
     }
 
