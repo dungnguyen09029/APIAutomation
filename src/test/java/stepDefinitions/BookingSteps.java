@@ -7,24 +7,25 @@ import apiEngine.model.requests.BookInformation;
 import apiEngine.model.requests.Bookingdates;
 import apiEngine.model.responses.Book;
 import apiEngine.model.responses.ListBookId;
-import context.TestContext;
+import cucumber.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class BookingSteps {
-    private TestContext testContext;
+public class BookingSteps extends BaseSteps {
+
     private Booking booking;
+    private IRestResponse<ListBookId> listBookIdIRestResponse;
 
     public BookingSteps(TestContext testContext) {
-        this.testContext = testContext;
-        booking = new Booking();
+        super(testContext);
+        booking = testContext.getRequestManager().getBooking();
     }
 
     @Given("User get an list of booking")
     public void getListBooking() {
-        IRestResponse<ListBookId> restResponse = booking.bookingRequest();
-        testContext.setRestResponse((RestResponse) restResponse);
+        listBookIdIRestResponse = booking.bookingRequest();
+        testContext.setRestResponse((RestResponse) listBookIdIRestResponse);
     }
 
     @Then("The booking id should be a number")

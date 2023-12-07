@@ -15,11 +15,11 @@ public class RestRequest extends EndPoints {
     private Method method; // GET, POST...
     private Map<String, String> header;
 
-    private final RequestSpecification httpRequest;
+    private final RequestSpecification request;
 
     public RestRequest() {
         RestAssured.baseURI = baseUrl;
-        httpRequest = RestAssured.given();
+        request = RestAssured.given();
         buildHeader(GlobalHeader.HEADER.CONTENT_TYPE.getHeaderName(), GlobalHeader.HEADER.CONTENT_TYPE.getHeaderValue());
     }
 
@@ -32,10 +32,10 @@ public class RestRequest extends EndPoints {
         Response response;
         switch (method) {
             case GET:
-                response = httpRequest.get(endPoint);
+                response = request.get(endPoint);
                 break;
             case POST:
-                response = httpRequest.post(endPoint);
+                response = request.post(endPoint);
                 break;
             default:
                 throw new RuntimeException("The method is not defined");
@@ -44,22 +44,22 @@ public class RestRequest extends EndPoints {
     }
 
     public void buildHeaders(Map<String, String> headers) {
-        httpRequest.queryParams(headers);
+        request.queryParams(headers);
     }
 
     public void buildHeader(String headerName, String headerValue) {
-        httpRequest.header(headerName, headerValue);
+        request.header(headerName, headerValue);
     }
 
     public void buildParam(String paramName, String paramValue) {
-        httpRequest.queryParams(paramName, paramValue);
+        request.queryParams(paramName, paramValue);
     }
 
     public void buildBody(JSONObject body) {
-        httpRequest.body(body.toJSONString());
+        request.body(body.toJSONString());
     }
 
     public void buildBody(Object tClass) {
-        httpRequest.body(tClass);
+        request.body(tClass);
     }
 }

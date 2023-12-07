@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import context.TestContext;
+import cucumber.TestContext;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 

@@ -1,17 +1,20 @@
-package context;
+package cucumber;
 
 import apiEngine.RestResponse;
+import apiEngine.manager.RequestManager;
 import utilities.LibraryManager;
 
 public class TestContext {
 
-    private ScenarioContext scenarioContext;
+    private final ScenarioContext scenarioContext;
     private RestResponse restResponse;
-    private LibraryManager libraryManager;
+    private final LibraryManager libraryManager;
+    private final RequestManager requestManager;
 
     public TestContext() {
         scenarioContext = new ScenarioContext();
         libraryManager = LibraryManager.getInstance();
+        requestManager = new RequestManager();
     }
 
     public void setRestResponse(RestResponse restResponse) {
@@ -24,5 +27,13 @@ public class TestContext {
 
     public LibraryManager getLibraryManager() {
         return libraryManager;
+    }
+
+    public RequestManager getRequestManager() {
+        return requestManager;
+    }
+
+    public ScenarioContext getScenarioContext() {
+        return scenarioContext;
     }
 }

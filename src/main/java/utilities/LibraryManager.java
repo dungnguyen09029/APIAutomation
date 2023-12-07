@@ -22,4 +22,8 @@ public class LibraryManager {
         return (assertUtils == null) ? assertUtils = new AssertUtils() : assertUtils;
     }
 
+    public ConfigReader getConfigReader() {
+        return ConfigReader.getInstance();
+    }
+
 }
