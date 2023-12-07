@@ -1,6 +1,4 @@
-package steps;
-
-import io.cucumber.java.ParameterType;
+package stepDefinitions;
 
 public class DataTableConverter {
 

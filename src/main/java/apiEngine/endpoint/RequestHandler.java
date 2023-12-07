@@ -1,6 +1,5 @@
-package request;
+package apiEngine.endpoint;
 
-import data.GlobalVariables;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -9,24 +8,18 @@ import org.json.simple.JSONObject;
 
 import java.util.Map;
 
-public class RequestHandler {
+public class RequestHandler extends EndPoints {
 
-    private String baseUrl;
-    private String path;
+    private String endPoint;
     private Method method; // GET, POST...
     private Map<String, String> header;
 
     private RequestSpecification httpRequest;
 
-    public RequestHandler(String baseURl, String path, String protocol, Method method) {
-        initializeRequest(baseURl, path, protocol, method);
-    }
-
-    private void initializeRequest(String baseURl, String path, String protocol, Method method) {
-        this.path = path;
+    public void initializeRequest(String endPoint, Method method) {
+        this.endPoint = endPoint;
         // http or https
         this.method = method;
-        this.baseUrl = protocol + GlobalVariables.BASE_URL_PREFIX + baseURl;
         RestAssured.baseURI = baseUrl;
         httpRequest = RestAssured.given();
     }
@@ -34,9 +27,9 @@ public class RequestHandler {
     public Response buildMethod() {
         switch (method) {
             case GET:
-                return httpRequest.get(path);
+                return httpRequest.get(endPoint);
             case POST:
-                return httpRequest.post(path);
+                return httpRequest.post(endPoint);
             default:
                 throw new RuntimeException("The method is not defined");
         }

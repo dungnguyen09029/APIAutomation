@@ -2,5 +2,5 @@ package context;
 
 public class ScenarioContext {
 
-    // scenario data saved here
+    // scenario data test saved here
 }
