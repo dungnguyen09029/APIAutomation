@@ -1,5 +1,6 @@
-package apiEngine.endpoint;
+package apiEngine;
 
+import data.GlobalHeader;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -8,32 +9,38 @@ import org.json.simple.JSONObject;
 
 import java.util.Map;
 
-public class RequestHandler extends EndPoints {
+public class RestRequest extends EndPoints {
 
     private String endPoint;
     private Method method; // GET, POST...
     private Map<String, String> header;
 
-    private RequestSpecification httpRequest;
+    private final RequestSpecification httpRequest;
+
+    public RestRequest() {
+        RestAssured.baseURI = baseUrl;
+        httpRequest = RestAssured.given();
+        buildHeader(GlobalHeader.HEADER.CONTENT_TYPE.getHeaderName(), GlobalHeader.HEADER.CONTENT_TYPE.getHeaderValue());
+    }
 
     public void initializeRequest(String endPoint, Method method) {
         this.endPoint = endPoint;
-        // http or https
         this.method = method;
-        RestAssured.baseURI = baseUrl;
-        httpRequest = RestAssured.given();
     }
 
     public Response buildMethod() {
+        Response response;
         switch (method) {
             case GET:
-                return httpRequest.get(endPoint);
+                response = httpRequest.get(endPoint);
+                break;
             case POST:
-                return httpRequest.post(endPoint);
+                response = httpRequest.post(endPoint);
+                break;
             default:
                 throw new RuntimeException("The method is not defined");
         }
-//        return httpRequest.request(Method.valueOf(method), path);
+        return response;
     }
 
     public void buildHeaders(Map<String, String> headers) {

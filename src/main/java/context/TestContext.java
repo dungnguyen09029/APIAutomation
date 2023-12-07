@@ -1,13 +1,12 @@
 package context;
 
-import io.restassured.response.Response;
-import apiEngine.endpoint.ResponseHandler;
+import apiEngine.RestResponse;
 import utilities.LibraryManager;
 
 public class TestContext {
 
     private ScenarioContext scenarioContext;
-    private ResponseHandler responseHandler;
+    private RestResponse restResponse;
     private LibraryManager libraryManager;
 
     public TestContext() {
@@ -15,12 +14,12 @@ public class TestContext {
         libraryManager = LibraryManager.getInstance();
     }
 
-    public void setResponseHandler(Response response) {
-        responseHandler = new ResponseHandler(response);
+    public void setRestResponse(RestResponse restResponse) {
+        this.restResponse = restResponse;
     }
 
-    public ResponseHandler getResponseHandler() {
-        return responseHandler;
+    public RestResponse getRestResponse () {
+        return restResponse;
     }
 
     public LibraryManager getLibraryManager() {

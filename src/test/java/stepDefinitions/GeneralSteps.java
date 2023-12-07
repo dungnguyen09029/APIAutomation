@@ -14,7 +14,7 @@ public class GeneralSteps {
 
     @Then("The response status code should be {int}")
     public void verifyResponseCode(int code) {
-        int statusCode = testContext.getResponseHandler().getResponse().getStatusCode();
+        int statusCode = testContext.getRestResponse().getStatusCode();
         Assert.assertEquals(statusCode, code);
     }
 }

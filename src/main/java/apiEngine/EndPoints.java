@@ -1,5 +1,6 @@
-package apiEngine.endpoint;
+package apiEngine;
 
+import data.GlobalVariables;
 import utilities.LibraryManager;
 
 public class EndPoints {
@@ -9,6 +10,6 @@ public class EndPoints {
 
     public EndPoints() {
         libraryManager = LibraryManager.getInstance();
-        baseUrl = libraryManager.getUrlUtils().buildBaseUrl();
+        baseUrl = GlobalVariables.PROTOCOL + GlobalVariables.BASE_URL_PREFIX + GlobalVariables.BASE_URL;
     }
 }
