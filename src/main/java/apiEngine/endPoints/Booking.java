@@ -1,4 +1,4 @@
-package apiEngine;
+package apiEngine.endPoints;
 
 import apiEngine.model.requests.BookInformation;
 import apiEngine.model.responses.Book;

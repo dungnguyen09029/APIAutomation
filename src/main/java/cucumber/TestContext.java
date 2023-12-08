@@ -1,13 +1,13 @@
 package cucumber;
 
-import apiEngine.RestResponse;
+import apiEngine.endPoints.IRestResponse;
 import apiEngine.manager.RequestManager;
 import utilities.LibraryManager;
 
 public class TestContext {
 
     private final ScenarioContext scenarioContext;
-    private RestResponse restResponse;
+    private IRestResponse<?> restResponse;
     private final LibraryManager libraryManager;
     private final RequestManager requestManager;
 
@@ -17,11 +17,11 @@ public class TestContext {
         requestManager = new RequestManager();
     }
 
-    public void setRestResponse(RestResponse restResponse) {
+    public void setRestResponse(IRestResponse<?> restResponse) {
         this.restResponse = restResponse;
     }
 
-    public RestResponse getRestResponse () {
+    public IRestResponse<?> getRestResponse () {
         return restResponse;
     }
 

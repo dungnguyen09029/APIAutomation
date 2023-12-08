@@ -1,6 +1,6 @@
 package apiEngine.manager;
 
-import apiEngine.Booking;
+import apiEngine.endPoints.Booking;
 
 public class RequestManager {
 

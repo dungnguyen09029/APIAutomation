@@ -1,4 +1,4 @@
-package apiEngine;
+package apiEngine.endPoints;
 
 import data.GlobalHeader;
 import io.restassured.RestAssured;
@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Map;
 
-public class RestRequest extends EndPoints {
+public class RestRequest extends BaseEndPoints {
 
     private String endPoint;
     private Method method; // GET, POST...

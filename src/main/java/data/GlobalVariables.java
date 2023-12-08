@@ -1,9 +1,11 @@
 package data;
 
+import utilities.LibraryManager;
+
 public class GlobalVariables {
 
-//    public static final String BASE_URL = "restful-booker.herokuapp.com";
-//    public static final String PROTOCOL = "https";
-//    public static final String BASE_URL_PREFIX = "://";
+    public static final String BASE_URL = LibraryManager.getInstance().getConfigReader().getBaseUrl();
+    public static final String PROTOCOL = LibraryManager.getInstance().getConfigReader().getProtocol();
+    public static final String BASE_URL_PREFIX = LibraryManager.getInstance().getConfigReader().getUrlPrefix();
     public static final String SEPARATOR = "/";
 }

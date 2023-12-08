@@ -1,29 +1,28 @@
 package apiEngine.model.responses;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class ListBookId {
+public class BookId {
 
-    @JsonProperty("")
-    public List<BookId> listBookId;
+    @JsonProperty("bookingid")
+    public Integer bookingId;
 
     /**
      * No args constructor for use in serialization
      *
      */
-    public ListBookId() {
+    public BookId() {
     }
 
     /**
      *
-     * @param listBookId
+     * @param bookingId
      */
-    public ListBookId(List<BookId> listBookId) {
+    public BookId(Integer bookingId) {
         super();
-        this.listBookId = listBookId;
+        this.bookingId = bookingId;
     }
 
 }

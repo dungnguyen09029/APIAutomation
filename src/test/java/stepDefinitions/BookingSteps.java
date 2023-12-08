@@ -1,21 +1,20 @@
 package stepDefinitions;
 
-import apiEngine.Booking;
-import apiEngine.IRestResponse;
-import apiEngine.RestResponse;
+import apiEngine.endPoints.Booking;
+import apiEngine.endPoints.IRestResponse;
 import apiEngine.model.requests.BookInformation;
 import apiEngine.model.requests.Bookingdates;
 import apiEngine.model.responses.Book;
 import apiEngine.model.responses.ListBookId;
 import cucumber.TestContext;
+import enums.Context;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class BookingSteps extends BaseSteps {
 
-    private Booking booking;
-    private IRestResponse<ListBookId> listBookIdIRestResponse;
+    private final Booking booking;
 
     public BookingSteps(TestContext testContext) {
         super(testContext);
@@ -24,14 +23,14 @@ public class BookingSteps extends BaseSteps {
 
     @Given("User get an list of booking")
     public void getListBooking() {
-        listBookIdIRestResponse = booking.bookingRequest();
-        testContext.setRestResponse((RestResponse) listBookIdIRestResponse);
+        IRestResponse<ListBookId> listBookIdIRestResponse = booking.bookingRequest();
+        testContext.setRestResponse(listBookIdIRestResponse);
     }
 
     @Then("The booking id should be a number")
     public void checkBookingId() {
         ListBookId bookingId = (ListBookId)testContext.getRestResponse().getBody();
-        System.out.println(bookingId.bookingId);
+        getAssertUtils().assertTrue(bookingId.listBookId.get(0) != null);
     }
 
     @Then("It only return booking id information")
@@ -44,13 +43,20 @@ public class BookingSteps extends BaseSteps {
         Bookingdates bookingdates = new Bookingdates("2018-01-01", "2019-01-01");
         BookInformation bookInformation = new BookInformation("Jim", "Brown", 111, true,
                 bookingdates, "Breakfast");
-        RestResponse restResponse = (RestResponse) booking.createBookingRequest(bookInformation);
+        IRestResponse<Book> restResponse = booking.createBookingRequest(bookInformation);
         testContext.setRestResponse(restResponse);
+        getScenarioContext().setContext(Context.BOOK_INFORMATION, bookInformation);
     }
 
-    @Then("Checking the response create booking is correct")
-    public void checkCreateBooking() {
-        Book book = testContext.getRestResponse().getResponse().getBody().as(Book.class);
-        System.out.println(book.bookingid);
+    @Then("Verify book information is returned in response")
+    public void verifyCreateBooking() {
+        Book book = (Book) testContext.getRestResponse().getBody();
+        getAssertUtils().assertTrue(book.booking.equals(getScenarioContext().getContext(Context.BOOK_INFORMATION)));
+    }
+
+    @Then("Verify returned booking id is a number")
+    public void verifyBookIdIsNumber() {
+        Book book = (Book) testContext.getRestResponse().getBody();
+        getAssertUtils().assertTrue(book.bookingid != null);
     }
 }

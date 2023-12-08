@@ -1,7 +1,5 @@
 package data;
 
-import java.util.stream.Stream;
-
 public class GlobalHeader {
 
     public enum HEADER {
