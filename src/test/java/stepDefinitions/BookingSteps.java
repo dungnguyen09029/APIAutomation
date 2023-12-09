@@ -33,16 +33,9 @@ public class BookingSteps extends BaseSteps {
         getAssertUtils().assertTrue(bookingId.listBookId.get(0) != null);
     }
 
-    @Then("It only return booking id information")
-    public void checkBookingIdNo() {
-
-    }
-
     @When("User create a new booking")
     public void createNewDefaultBooking() {
-        Bookingdates bookingdates = new Bookingdates("2018-01-01", "2019-01-01");
-        BookInformation bookInformation = new BookInformation("Jim", "Brown", 111, true,
-                bookingdates, "Breakfast");
+        BookInformation bookInformation = getScenarioContext().getTestDataManager().getBookInformationDataTestData().getBookInformation();
         IRestResponse<Book> restResponse = booking.createBookingRequest(bookInformation);
         testContext.setRestResponse(restResponse);
         getScenarioContext().setContext(Context.BOOK_INFORMATION, bookInformation);

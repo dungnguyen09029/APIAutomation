@@ -1,6 +1,6 @@
 package apiEngine.endPoints;
 
-import data.GlobalHeader;
+import enums.Header;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -20,7 +20,7 @@ public class RestRequest extends BaseEndPoints {
     public RestRequest() {
         RestAssured.baseURI = baseUrl;
         request = RestAssured.given();
-        buildHeader(GlobalHeader.HEADER.CONTENT_TYPE.getHeaderName(), GlobalHeader.HEADER.CONTENT_TYPE.getHeaderValue());
+        buildHeader(Header.CONTENT_TYPE.getHeaderName(), Header.CONTENT_TYPE.getHeaderValue());
     }
 
     public void initializeRequest(String endPoint, Method method) {
