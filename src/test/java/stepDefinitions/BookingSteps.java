@@ -3,7 +3,6 @@ package stepDefinitions;
 import apiEngine.endPoints.Booking;
 import apiEngine.endPoints.IRestResponse;
 import apiEngine.model.requests.BookInformation;
-import apiEngine.model.requests.Bookingdates;
 import apiEngine.model.responses.Book;
 import apiEngine.model.responses.ListBookId;
 import cucumber.TestContext;

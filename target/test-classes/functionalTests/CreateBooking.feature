@@ -1,15 +1,10 @@
 @API
 Feature: Create a Booking
 
-  Background:
+  Scenario: User sent create booking request
     When User create a new booking
-
-  Scenario: Verify status code
-    Then The response status code should be 200
-
-  Scenario: Verify book information
-    Then Verify book information is returned in response
-
-  Scenario: Verify booking id is number
-    Then Verify returned booking id is a number
+    Then The response status code should be 204
+      And Verify book information is returned in response
+      And Verify returned booking id is a number
+      And User assert all issue
 

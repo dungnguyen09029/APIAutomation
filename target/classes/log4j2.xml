@@ -1,42 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
+        <!--<Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </Console>
-
-        <!--<File name="MyFile" fileName="test-output/log4j2/${date:yyyy-MM-ddHHmmssSSS}.log" append="false">
-            <PatternLayout>
-                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
-            </PatternLayout>
-        </File>-->
-
-        <!--<File name="MyHTMLFile" fileName="${sys:LOG_PATH}" append="false">
-            <HtmlLayout datePattern="ISO8601" timezone="GMT+0"/>
-        </File>-->
-
-        <File name="MyHTMLFile" fileName="test-output/log4j2/${date:yyyy-MM-ddHHmmssSSS}.html">
+        </Console>-->
+        <File name="LogSimple" fileName="target/log4j2/LogSimple.log" append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="LogHTML" fileName="target/log4j2/LogContent.html" append="true">
             <HtmlLayout datePattern="ISO8601" timezone="GMT+0"/>
         </File>
-
-        <!--<Routing name="Routing">
-            <Routes pattern="$${ctx:threadName}">
-                <Route>
-                    <RollingFile name="${ctx:threadName}"
-                                 fileName="${ctx:threadName}" filePattern="${ctx:threadName}">
-                        <HtmlLayout datePattern="ISO8601" timezone="GMT+0"/>
-                        <Policies>
-                            <OnStartupTriggeringPolicy />
-                        </Policies>
-                    </RollingFile>
-                </Route>
-            </Routes>
-        </Routing>-->
     </Appenders>
     <Loggers>
         <Root level="trace">
-            <AppenderRef ref="MyHTMLFile"/>
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="LogSimple"/>
+            <AppenderRef ref="LogHTML"/>
+<!--            <AppenderRef ref="Console"/>-->
         </Root>
     </Loggers>
 </Configuration>

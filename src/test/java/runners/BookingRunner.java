@@ -3,9 +3,12 @@ package runners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import utilities.Log;
 
 @CucumberOptions(
-        features = "src/test/resources/functionalTests/Booking.feature",
+        features = "src/test/resources/functionalTests/CreateBooking.feature",
         glue = {"stepDefinitions"},
         tags = "@API",
         monochrome = true,
@@ -17,5 +20,15 @@ import io.cucumber.testng.CucumberOptions;
         }
 )
 
-public class BookingRunner extends AbstractTestNGCucumberTests { }
+public class BookingRunner extends AbstractTestNGCucumberTests {
+        @BeforeTest
+        public void setupTest() {
+                Log.startTestSet("Create Booking Test Set");
+        }
+
+        @AfterTest
+        public void endTest() {
+                Log.endTestSet("Create Booking Test Set");
+        }
+}
 

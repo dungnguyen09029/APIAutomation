@@ -3,6 +3,7 @@ package apiEngine.endPoints;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import utilities.Log;
 
 public class RestResponse<T> implements IRestResponse<T> {
 
@@ -20,11 +21,15 @@ public class RestResponse<T> implements IRestResponse<T> {
     }
 
     public String getContent() {
-        return response.getBody().asString();
+        String body = response.getBody().asString();
+        Log.logInfo("Response Body: " + body);
+        return body;
     }
 
     public int getStatusCode() {
-        return response.getStatusCode();
+        int statusCode = response.getStatusCode();
+        Log.logInfo("Response Status Code is: " + statusCode);
+        return statusCode;
     }
 
     public boolean isSuccessful() {
@@ -48,10 +53,13 @@ public class RestResponse<T> implements IRestResponse<T> {
         }catch (Exception e) {
             this.e=e;
         }
+        String body = response.getBody().asString();
+        Log.logInfo("Response Body: " + body);
         return data;
     }
 
     public Exception getException() {
+        Log.logInfo("Exception is: " + e);
         return e;
     }
 
@@ -99,7 +107,9 @@ public class RestResponse<T> implements IRestResponse<T> {
      * OK is the status line
      * */
     public String getStatusLine() {
-        return response.getStatusLine();
+        String statusLine = response.getStatusLine();
+        Log.logInfo("Response status line: " + statusLine);
+        return statusLine;
     }
 
 }

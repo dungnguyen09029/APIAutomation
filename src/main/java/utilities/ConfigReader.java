@@ -52,4 +52,10 @@ public class ConfigReader {
         if(urlPrefix != null) return urlPrefix;
         else throw new RuntimeException("url_prefix not specified in the Configuration.properties file.");
     }
+
+    public boolean getSoftAssertStatus() {
+        String softAssertStatus = properties.getProperty("softAssertStatus");
+        if(softAssertStatus != null) return Boolean.parseBoolean(softAssertStatus);
+        else throw new RuntimeException("softAssertStatus not specified in the Configuration.properties file.");
+    }
 }

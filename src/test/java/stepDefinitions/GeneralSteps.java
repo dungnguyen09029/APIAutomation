@@ -14,4 +14,9 @@ public class GeneralSteps extends BaseSteps {
         int statusCode = testContext.getRestResponse().getStatusCode();
         getAssertUtils().assertEquals(statusCode, code);
     }
+
+    @Then("User assert all issue")
+    public void assertAll() {
+        getAssertUtils().getSoftAssert().assertAll();
+    }
 }

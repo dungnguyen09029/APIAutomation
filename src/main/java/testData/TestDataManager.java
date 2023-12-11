@@ -1,7 +1,5 @@
 package testData;
 
-import apiEngine.endPoints.Booking;
-
 public class TestDataManager {
 
     private BookingTestData bookInformationData;
