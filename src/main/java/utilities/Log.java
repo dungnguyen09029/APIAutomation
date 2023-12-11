@@ -9,22 +9,22 @@ public class Log {
 
     public static void startTestSet(String testSuite) {
         logger.info("-----------------------------------------------------------------------------------");
-        logger.info("Start test set: " + testSuite);
+        logger.info("Start test set: " + testSuite + "---- Thread ID: " + getPrefix());
     }
 
     public static void endTestSet(String testSuite) {
-        logger.info("End test set: " + testSuite);
+        logger.info("End test set: " + testSuite + "---- Thread ID: " + getPrefix());
         logger.info("-----------------------------------------------------------------------------------");
     }
 
     public static void startTestCase(String testcaseId) {
-        logger.info("Start testcase ID: " + testcaseId);
+        logger.info("Start testcase ID: " + testcaseId + "---- Thread ID: " + getPrefix());
         logger.info("-----------------------------------------------------------------------------------");
     }
 
     public static void endTestCase(String testcaseId) {
         logger.info("-----------------------------------------------------------------------------------");
-        logger.info("End testcase ID: "  +testcaseId);
+        logger.info("End testcase ID: "  +testcaseId + "---- Thread ID: " + getPrefix());
     }
 
     private static String getPrefix() {

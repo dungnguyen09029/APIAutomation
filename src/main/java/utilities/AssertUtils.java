@@ -7,7 +7,6 @@ import org.testng.asserts.SoftAssert;
 public class AssertUtils {
 
     private final SoftAssert softAssert;
-    private final boolean isSoft = GlobalVariables.isSoftAssert;
 
     public AssertUtils() {
         softAssert = new SoftAssert();
@@ -26,7 +25,7 @@ public class AssertUtils {
     public void assertEquals(int actualValue, int expectedValue) {
         String description = "Assert equals: actual Value: " + actualValue + " & expected Value: " + expectedValue;
         Log.logInfo(description);
-        if (isSoft)
+        if (GlobalVariables.isSoftAssert)
             softAssert.assertEquals(actualValue, expectedValue);
         else
             Assert.assertEquals(actualValue, expectedValue);
@@ -47,7 +46,7 @@ public class AssertUtils {
     public void assertTrue(boolean condition) {
         String description = "Assert true: condition is: " + condition;
         Log.logInfo(description);
-        if (isSoft)
+        if (GlobalVariables.isSoftAssert)
             softAssert.assertEquals(condition, description);
         else
             Assert.assertTrue(condition, description);

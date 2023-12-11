@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import cucumber.TestContext;
+import data.GlobalVariables;
 import io.cucumber.java.en.Then;
 
 public class GeneralSteps extends BaseSteps {
@@ -17,6 +18,7 @@ public class GeneralSteps extends BaseSteps {
 
     @Then("User assert all issue")
     public void assertAll() {
-        getAssertUtils().getSoftAssert().assertAll();
+        if (GlobalVariables.isSoftAssert)
+            getAssertUtils().getSoftAssert().assertAll();
     }
 }

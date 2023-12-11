@@ -39,3 +39,20 @@ public IRestResponse<ResponseBodyClass> createBookingRequest(RequestBodyClass)
 The report in runner is using testNG, any code sample from internet can use the junit which is different library. 
 Especially the code with RunWith keyword
 Generate build-in report for cucumber. Put this line of code into plugin --> html:target/cucumber-reports/BookingRunner.html
+
+------------------------------------------------------------------------------------------------------------------------
+
+The framework use log4j2 (not log4j) as a log library. The config will be inside the file log4j2.xml (the location should be 
+under 'resources' folder of src/main/java, put it in other folder makes it cannot work)
+Below appender tag is the file name that is created for log. One is .log and one is .html. append="true" will indicate
+that the log will be appended to old file instead of create a new one
+In the Loggers tag, every AppenderRef should point to every tag under Appenders which has named --> it will make sure it 
+does not throw any log error
+
+------------------------------------------------------------------------------------------------------------------------
+
+The SoftAssert in AssertUtils is for assert without throwing error that stop cucumber from running remaining steps.
++ It will assert the step, save the error, but it is not mark the step as failed in cucumber report --> Need to find a
+  way to deal with it. Make the step warning for example
++ It needs to call the method assertAll() at the end of test suite. The method will return all error but no step related to 
+  that error. Need to improve it to make it call in @AfterSuite method. 

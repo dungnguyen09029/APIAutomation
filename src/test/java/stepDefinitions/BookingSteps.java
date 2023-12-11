@@ -10,6 +10,7 @@ import enums.Context;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utilities.Log;
 
 public class BookingSteps extends BaseSteps {
 
@@ -50,5 +51,10 @@ public class BookingSteps extends BaseSteps {
     public void verifyBookIdIsNumber() {
         Book book = (Book) testContext.getRestResponse().getBody();
         getAssertUtils().assertTrue(book.bookingid != null);
+    }
+
+    @When("The message is {string}")
+    public void testMessage(String mess) {
+        Log.logInfo("The test message is: " + mess);
     }
 }

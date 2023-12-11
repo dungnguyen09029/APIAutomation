@@ -71,6 +71,8 @@ public class RestRequest extends BaseEndPoints {
 
     public void buildBody(Object tClass) {
         request.body(tClass);
+
+        // for logging only
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = null;
         try {
@@ -79,5 +81,6 @@ public class RestRequest extends BaseEndPoints {
             e.printStackTrace();
         }
         Log.logInfo("Request body: \n" + json);
+        // end for logging
     }
 }
