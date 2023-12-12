@@ -5,7 +5,6 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import utilities.Log;
 
 @CucumberOptions(
@@ -30,10 +29,5 @@ public class RunParallel002 extends AbstractTestNGCucumberTests {
                 Log.endTestSet("Test Parallel 002");
         }
 
-//        @Override
-//        @DataProvider(parallel = true)
-//        public Object[][] scenarios() {
-//                return super.scenarios();
-//        }
 }
 

@@ -56,3 +56,8 @@ The SoftAssert in AssertUtils is for assert without throwing error that stop cuc
   way to deal with it. Make the step warning for example
 + It needs to call the method assertAll() at the end of test suite. The method will return all error but no step related to 
   that error. Need to improve it to make it call in @AfterSuite method. 
+
+------------------------------------------------------------------------------------------------------------------------
+
+For parallel execution, Using testNG .xml file to run parallel. I try to test with DataProvider of cucumber, but it is not 
+working with testNG as expected. Need to find out
