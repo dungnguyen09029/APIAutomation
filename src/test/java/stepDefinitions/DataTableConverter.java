@@ -1,7 +1,14 @@
 package stepDefinitions;
 
-// for cucumber step data and definition
+import io.cucumber.java.ParameterType;
+
+// for cucumber step type register and data table
 public class DataTableConverter {
+
+    @ParameterType("(Continue|Back|Complete Process)")
+    public String process(String process) {
+        return process;
+    }
 
 //    @DataTableType
 //    public PropertyAddress PropertyAddressEntry(Map<String, String> entry) {
@@ -39,25 +46,5 @@ public class DataTableConverter {
 //        result.setEmail(entry.get("email"));
 //        result.setMobilePhone(entry.get("mobilePhone"));
 //        return result;
-//    }
-//
-//    @ParameterType("(Continue|Back|Complete Process)")
-//    public String buttonName(String buttonName) {
-//        return buttonName;
-//    }
-//
-//    @ParameterType("(enabled|disabled)")
-//    public String status(String status) {
-//        return status;
-//    }
-//
-//    @ParameterType("(should be displayed|should not be displayed)")
-//    public String display(String display) {
-//        return display;
-//    }
-//
-//    @ParameterType("(New Credit Business|Replacement)")
-//    public String typeOfBusiness(String type) {
-//        return type;
 //    }
 }

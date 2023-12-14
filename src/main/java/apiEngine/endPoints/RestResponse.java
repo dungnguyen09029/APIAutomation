@@ -5,6 +5,8 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import utilities.Log;
 
+import java.lang.reflect.Array;
+
 public class RestResponse<T> implements IRestResponse<T> {
 
     private T data;
@@ -13,10 +15,15 @@ public class RestResponse<T> implements IRestResponse<T> {
 
     public RestResponse(Class<T> t, Response response) {
         this.response = response;
-        try{
-            this.data = t.getDeclaredConstructor().newInstance();
-        }catch (Exception e){
-            throw new RuntimeException("There should be a default constructor in the Response POJO");
+        try {
+            if (t.isArray()) {
+                Class<?> componentType = t.getComponentType();
+                this.data = (T) Array.newInstance(componentType, 0);
+            } else {
+                this.data = t.getDeclaredConstructor().newInstance();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
