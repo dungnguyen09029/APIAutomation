@@ -16,6 +16,12 @@ public class GeneralSteps extends BaseSteps {
         getAssertUtils().assertEquals(statusCode, code);
     }
 
+    @Then("The response body should contain text {string}")
+    public void verifyResponseBodyText(String expectedText) {
+        String actualText = testContext.getRestResponse().getContent();
+        getAssertUtils().assertEquals(actualText, expectedText);
+    }
+
     @Then("User assert all issue")
     public void assertAll() {
         if (GlobalVariables.isSoftAssert)
