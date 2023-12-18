@@ -1,6 +1,5 @@
 package apiEngine.model.requests;
 
-import apiEngine.model.responses.Book;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 

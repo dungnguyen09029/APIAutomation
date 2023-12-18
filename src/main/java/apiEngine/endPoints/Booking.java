@@ -19,10 +19,10 @@ public class Booking extends RestRequest {
         return new RestResponse(BookInformation.class, buildMethod());
     }
 
-    public IRestResponse<Book> createBookingRequest(BookInformation bookInformation) {
+    public <T> IRestResponse<Book> createBookingRequest(T body) {
         String endPoint = Routes.createBooking();
         initializeRequest(endPoint, Method.POST);
-        buildBody(bookInformation);
+        buildBody(body);
         return new RestResponse(Book.class, buildMethod());
     }
 }

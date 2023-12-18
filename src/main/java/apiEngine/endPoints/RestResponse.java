@@ -13,6 +13,7 @@ public class RestResponse<T> implements IRestResponse<T> {
     private Response response;
     private Exception e;
 
+    @SuppressWarnings("unchecked")
     public RestResponse(Class<T> t, Response response) {
         this.response = response;
         try {
@@ -53,7 +54,7 @@ public class RestResponse<T> implements IRestResponse<T> {
         return response;
     }
 
-
+    @SuppressWarnings("unchecked")
     public T getBody() {
         try {
             data = (T) response.getBody().as(data.getClass());
