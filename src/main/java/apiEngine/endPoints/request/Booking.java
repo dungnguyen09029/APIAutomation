@@ -1,5 +1,9 @@
-package apiEngine.endPoints;
+package apiEngine.endPoints.request;
 
+import apiEngine.endPoints.IRestResponse;
+import apiEngine.endPoints.RestRequest;
+import apiEngine.endPoints.RestResponse;
+import apiEngine.endPoints.Routes;
 import apiEngine.model.requests.BookInformation;
 import apiEngine.model.responses.Book;
 import apiEngine.model.responses.BookingId;

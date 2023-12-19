@@ -5,7 +5,7 @@ Feature: Create a Booking
     When User create a new booking
     Then The response status code should be 200
       And Verify book information is returned in response
-      And Verify returned booking id is a number
+      And Verify booking created with correct information
       And User assert all issue
 
   Scenario: User sent create booking request with wrong data type

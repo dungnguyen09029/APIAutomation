@@ -84,7 +84,7 @@ public class APIJsonUtils {
     }
 
     /**
-     * Convert class object to Json string object
+     * Convert class object to Json string object. This method is for logging only
      * @param obj class object
      * */
     public <T> String fromClassToString(Object obj) {
@@ -115,13 +115,12 @@ public class APIJsonUtils {
     }
 
     /**
-     * Change data of json at 1st level
+     * Change data of json field at 1st level
      * @param json json string
      * @param field field name
      * @param value value of field
      * */
     public <T> String changeJsonFields(Object json, String field, T value) {
-        // for logging only
         ObjectMapper objectMapper = new ObjectMapper();
         String modifiedJson = null;
 
@@ -132,6 +131,7 @@ public class APIJsonUtils {
             // Parse the JSON string into a JsonNode
             JsonNode rootNode = objectMapper.readTree(parseJson);
 
+            // check if the node has field has same name, only 1st level
             if (rootNode.has(field)) {
                 if (value instanceof String)
                     ((ObjectNode) rootNode).put(field, (String) value);

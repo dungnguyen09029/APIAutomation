@@ -44,6 +44,9 @@ public class RestRequest extends BaseEndPoints {
             case POST:
                 response = request.post(endPoint);
                 break;
+            case PUT:
+                response = request.put(endPoint);
+                break;
             default:
                 throw new RuntimeException("The method is not defined");
         }
@@ -65,7 +68,7 @@ public class RestRequest extends BaseEndPoints {
     }
 
     public <T> void buildBody(T body) {
-        if (body instanceof  JSONObject) {
+        if (body instanceof JSONObject) {
             String b = ((JSONObject) body).toJSONString();
             Log.logInfo(b);
             request.body(b);

@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import apiEngine.endPoints.Booking;
+import apiEngine.endPoints.request.Booking;
 import apiEngine.endPoints.IRestResponse;
 import apiEngine.model.requests.BookInformation;
 import apiEngine.model.responses.Book;
@@ -36,7 +36,7 @@ public class BookingSteps extends BaseSteps {
 
     @When("User create a new booking")
     public void createNewDefaultBooking() {
-        BookInformation bookInformation = getScenarioContext().getTestDataManager().getBookInformationDataTestData().getBookInformation();
+        BookInformation bookInformation = getScenarioContext().getDataManager().getBookingTestData().getBookInformation();
         IRestResponse<Book> restResponse = booking.createBookingRequest(bookInformation);
         testContext.setRestResponse(restResponse);
         getScenarioContext().setContext(Context.BOOK_INFORMATION, bookInformation);
@@ -44,15 +44,15 @@ public class BookingSteps extends BaseSteps {
 
     @When("User create a new booking with {string} is {string}")
     @When("User create a new booking with {string} is {int}")
-    public <T> void createNewDefaultBooking(String field, T value) {
+    public <T> void createBookingWithFieldValue(String field, T value) {
         String bookInformation = testContext.getLibraryManager().getApiJsonUtils().changeJsonFields(
-                getScenarioContext().getTestDataManager().getBookInformationDataTestData().getBookInformation(), field, value);
+                getScenarioContext().getDataManager().getBookingTestData().getBookInformation(), field, value);
         IRestResponse<Book> restResponse = booking.createBookingRequest(bookInformation);
         testContext.setRestResponse(restResponse);
         getScenarioContext().setContext(Context.BOOK_INFORMATION, bookInformation);
     }
 
-    @Then("Verify book information is returned in response")
+    @Then("Verify booking created with correct information")
     public void verifyCreateBooking() {
         Book book = (Book) testContext.getRestResponse().getBody();
         getAssertUtils().assertTrue(book.booking.equals(getScenarioContext().getContext(Context.BOOK_INFORMATION)));
@@ -71,7 +71,7 @@ public class BookingSteps extends BaseSteps {
     }
 
     @Then("Verify returned booking id is a number")
-    public void verifyBookIdIsNumber() {
+    public void  verifyBookIdIsNumber() {
         Book book = (Book) testContext.getRestResponse().getBody();
         getAssertUtils().assertTrue(book.bookingid != null);
     }
@@ -103,5 +103,11 @@ public class BookingSteps extends BaseSteps {
     public void getSpecificBookingInformationWithId(String Id) {
         IRestResponse<BookInformation> restResponse = booking.SpecificBookingRequest(Id);
         testContext.setRestResponse(restResponse);
+    }
+
+    @And("User save created booking Id")
+    public void saveCreatedBookingId() {
+        Book book = (Book) testContext.getRestResponse().getBody();
+        getScenarioContext().setContext(Context.CREATE_BOOK_ID, book.bookingid);
     }
 }
