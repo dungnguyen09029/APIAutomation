@@ -1,7 +1,8 @@
 package enums;
 
 public enum Header {
-    CONTENT_TYPE("Content-Type", "application/json");
+    CONTENT_TYPE("Content-Type", "application/json"),
+    COOKIE("Cookie", "");
 
     private String headerName;
     private String headerValue;

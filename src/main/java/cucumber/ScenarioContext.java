@@ -1,7 +1,7 @@
 package cucumber;
 
 import enums.Context;
-import testData.TestDataManager;
+import testData.DataManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +10,11 @@ public class ScenarioContext {
 
     // scenario data test saved here
     private Map<String, Object> scenarioContext;
-    private TestDataManager testDataManager;
+    private DataManager dataManager;
 
     public ScenarioContext(){
         scenarioContext = new HashMap<String, Object>();
-        testDataManager = new TestDataManager();
+        dataManager = new DataManager();
     }
 
     public void setContext(Context key, Object value) {
@@ -29,7 +29,7 @@ public class ScenarioContext {
         return scenarioContext.containsKey(key.toString());
     }
 
-    public TestDataManager getTestDataManager() {
-        return testDataManager;
+    public DataManager getDataManager() {
+        return dataManager;
     }
 }

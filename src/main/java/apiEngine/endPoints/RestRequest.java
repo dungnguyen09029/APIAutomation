@@ -44,6 +44,9 @@ public class RestRequest extends BaseEndPoints {
             case POST:
                 response = request.post(endPoint);
                 break;
+            case PUT:
+                response = request.put(endPoint);
+                break;
             default:
                 throw new RuntimeException("The method is not defined");
         }
@@ -64,23 +67,35 @@ public class RestRequest extends BaseEndPoints {
         request.queryParams(paramName, paramValue);
     }
 
-    public void buildBody(JSONObject body) {
-        Log.logInfo(body.toJSONString());
-        request.body(body.toJSONString());
-    }
-
-    public void buildBody(Object tClass) {
-        request.body(tClass);
-
-        // for logging only
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = null;
-        try {
-            json = ow.writeValueAsString(tClass);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+    public <T> void buildBody(T body) {
+        if (body instanceof JSONObject) {
+            String b = ((JSONObject) body).toJSONString();
+            Log.logInfo(b);
+            request.body(b);
+        } else {
+            if (body instanceof String)
+                Log.logInfo((String) body);
+            else
+                Log.logInfo("Request body: " + libraryManager.getApiJsonUtils().fromClassToString(body));
+            request.body(body);
         }
-        Log.logInfo("Request body: \n" + json);
-        // end for logging
     }
+
+//    public void buildBody(JSONObject body) {
+//        Log.logInfo(body.toJSONString());
+//        request.body(body.toJSONString());
+//    }
+//
+//    public void buildBody(String body) {
+//        Log.logInfo(body);
+//        request.body(body);
+//    }
+//
+//    public void buildBody(Object tClass) {
+//        request.body(tClass);
+//
+//        // for logging only
+//        Log.logInfo("Request body: \n" + libraryManager.getApiJsonUtils().fromClassToString(tClass));
+//        // end for logging
+//    }
 }

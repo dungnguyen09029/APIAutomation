@@ -1,5 +1,10 @@
 package utilities;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
@@ -76,6 +81,72 @@ public class APIJsonUtils {
     public <T> List<T> deserializeDataWithJsonPath(String jsonPath, Response response) {
         JsonPath jsonPathEvaluator = response.jsonPath();
         return jsonPathEvaluator.getList(jsonPath);
+    }
+
+    /**
+     * Convert class object to Json string object. This method is for logging only
+     * @param obj class object
+     * */
+    public <T> String fromClassToString(Object obj) {
+        // for logging only
+
+        // this will print json string with pretty format, like below
+//        {
+//            "lastname" :"Brown",
+//            "totalprice" :111,
+//        }
+//        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//        String json = null;
+//        try {
+//            json = ow.writeValueAsString(obj);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = null;
+        try {
+            // Convert the object to JSON string
+            json = objectMapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    /**
+     * Change data of json field at 1st level
+     * @param json json string
+     * @param field field name
+     * @param value value of field
+     * */
+    public <T> String changeJsonFields(Object json, String field, T value) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String modifiedJson = null;
+
+        try {
+            // Convert the object to JSON string
+            String parseJson = objectMapper.writeValueAsString(json);
+
+            // Parse the JSON string into a JsonNode
+            JsonNode rootNode = objectMapper.readTree(parseJson);
+
+            // check if the node has field has same name, only 1st level
+            if (rootNode.has(field)) {
+                if (value instanceof String)
+                    ((ObjectNode) rootNode).put(field, (String) value);
+                else if (value instanceof Integer)
+                    ((ObjectNode) rootNode).put(field, (Integer) value);
+                else if (value instanceof Boolean)
+                    ((ObjectNode) rootNode).put(field, (Boolean) value);
+            }
+
+            // Convert the modified JsonNode back to JSON string
+            modifiedJson = objectMapper.writeValueAsString(rootNode);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return modifiedJson;
     }
 
 }
