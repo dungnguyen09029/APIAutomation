@@ -23,6 +23,10 @@ public class Routes {
         return BOOKING + GlobalVariables.SEPARATOR + id;
     }
 
+    public static String deleteBooking(String id) {
+        return BOOKING + GlobalVariables.SEPARATOR + id;
+    }
+
     public static String auth() {
         return AUTHENTICATION;
     }

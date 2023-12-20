@@ -1,7 +1,7 @@
 @API
 Feature: Update a Booking
 
-  Scenario: User sent create booking request
+  Scenario: User update a booking
     When User create a new booking
       And The response status code should be 200
       And User save created booking Id

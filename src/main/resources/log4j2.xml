@@ -7,7 +7,7 @@
         <File name="LogFile" fileName="target/log4j2/LogSimple.log" append="true">
             <PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss,SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
-        <File name="LogHTML" fileName="target/log4j2/HTML-${date:yyyy-MM-ddHHmmssSSS}.html" append="false">
+        <File name="LogHTML" fileName="target/log4j2/HTML-${date:yyyy-MM-dd-HHmmssSSS}.html" append="false">
             <HtmlLayout datePattern="ISO8601" timezone="GMT+0"/>
         </File>
     </Appenders>

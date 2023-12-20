@@ -2,9 +2,6 @@ package stepDefinitions;
 
 import apiEngine.endPoints.IRestResponse;
 import apiEngine.endPoints.request.Authentication;
-import apiEngine.model.requests.Auth;
-import apiEngine.model.requests.BookInformation;
-import apiEngine.model.responses.Book;
 import apiEngine.model.responses.Token;
 import cucumber.TestContext;
 import enums.Context;
@@ -22,7 +19,7 @@ public class AuthSteps extends BaseSteps {
     @When("User sent authentication and receive token")
     public void getAuthenticationToken() {
         getScenarioContext().getDataManager().getAuthentication().getAdminAuthentication();
-        IRestResponse<Token> restResponse = authentication.authentication(getScenarioContext()
+        IRestResponse<Token> restResponse = authentication.sentAuthentication(getScenarioContext()
                 .getDataManager().getAuthentication().getAdminAuthentication());
         getScenarioContext().setContext(Context.TOKEN, restResponse.getBody().token);
     }

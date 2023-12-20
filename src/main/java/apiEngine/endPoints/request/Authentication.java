@@ -10,7 +10,7 @@ import io.restassured.http.Method;
 
 public class Authentication extends RestRequest {
 
-    public <T> IRestResponse<Token> authentication(Auth auth) {
+    public <T> IRestResponse<Token> sentAuthentication(Auth auth) {
         String endPoint = Routes.auth();
         initializeRequest(endPoint, Method.POST);
         buildBody(auth);

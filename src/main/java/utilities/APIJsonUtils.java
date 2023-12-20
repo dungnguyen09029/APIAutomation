@@ -149,4 +149,31 @@ public class APIJsonUtils {
         return modifiedJson;
     }
 
+    /**
+     * Get json data at 1st node level
+     * @param json json string
+     * @param field field name
+     * @return return the field value
+     * */
+    public <T> T getJsonNode(Object json, String field, Class<T> valueType) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        T value = null;
+
+        try {
+            // Convert the object to JSON string
+            String parseJson = objectMapper.writeValueAsString(json);
+
+            // Parse the JSON string into a JsonNode
+            JsonNode rootNode = objectMapper.readTree(parseJson);
+
+            JsonNode propertyNode = rootNode.get(field);
+            if (propertyNode != null) {
+                value = objectMapper.treeToValue(propertyNode, valueType);
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
 }
