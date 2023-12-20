@@ -13,7 +13,7 @@ public class ScenarioContext {
     private DataManager dataManager;
 
     public ScenarioContext(){
-        scenarioContext = new HashMap<String, Object>();
+        scenarioContext = new HashMap<>();
         dataManager = new DataManager();
     }
 

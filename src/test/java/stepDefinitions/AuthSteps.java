@@ -2,9 +2,6 @@ package stepDefinitions;
 
 import apiEngine.endPoints.IRestResponse;
 import apiEngine.endPoints.request.Authentication;
-import apiEngine.model.requests.Auth;
-import apiEngine.model.requests.BookInformation;
-import apiEngine.model.responses.Book;
 import apiEngine.model.responses.Token;
 import cucumber.TestContext;
 import enums.Context;

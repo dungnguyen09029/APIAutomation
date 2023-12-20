@@ -11,7 +11,6 @@ public class BaseEndPoints {
 
     public BaseEndPoints() {
         baseUrl = GlobalVariables.PROTOCOL + GlobalVariables.BASE_URL_PREFIX + GlobalVariables.BASE_URL;
-        Log.logInfo("Base URL: " + baseUrl);
         libraryManager = LibraryManager.getInstance();
     }
 }

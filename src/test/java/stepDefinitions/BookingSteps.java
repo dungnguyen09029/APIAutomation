@@ -94,9 +94,10 @@ public class BookingSteps extends BaseSteps {
 
     @And("User sent data to get specific booking information")
     public void getSpecificBookingInformationFromScenarioContext() {
-        int id = (int) getScenarioContext().getContext(Context.BOOK_ID);
-        IRestResponse<BookInformation> restResponse = booking.SpecificBookingRequest(Integer.toString(id));
+        IRestResponse<BookInformation> restResponse = booking.SpecificBookingRequest(getLibraryManager().getStringUtils()
+                .getStringFromObject(getScenarioContext().getContext(Context.BOOK_ID)));
         testContext.setRestResponse(restResponse);
+        getScenarioContext().setContext(Context.BOOK_INFORMATION, restResponse.getBody());
     }
 
     @And("User get specific booking information with id {string}")
@@ -108,6 +109,6 @@ public class BookingSteps extends BaseSteps {
     @And("User save created booking Id")
     public void saveCreatedBookingId() {
         Book book = (Book) testContext.getRestResponse().getBody();
-        getScenarioContext().setContext(Context.CREATE_BOOK_ID, book.bookingid);
+        getScenarioContext().setContext(Context.BOOK_ID, book.bookingid);
     }
 }

@@ -5,6 +5,7 @@ public class LibraryManager {
     private static LibraryManager instance;
     private AssertUtils assertUtils;
     private APIJsonUtils apiJsonUtils;
+    private StringUtils stringUtils;
 
     public static LibraryManager getInstance() {
         if (instance == null) {
@@ -29,6 +30,10 @@ public class LibraryManager {
 
     public APIJsonUtils getApiJsonUtils() {
         return (apiJsonUtils == null)? apiJsonUtils = new APIJsonUtils() : apiJsonUtils;
+    }
+
+    public StringUtils getStringUtils() {
+        return (stringUtils == null)? stringUtils = new StringUtils() : stringUtils;
     }
 
 }

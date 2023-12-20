@@ -1,8 +1,5 @@
 package apiEngine.endPoints;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import enums.Header;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
@@ -31,6 +28,7 @@ public class RestRequest extends BaseEndPoints {
     public void initializeRequest(String endPoint, Method method) {
         this.endPoint = endPoint;
         this.method = method;
+        Log.logInfo("Base URL: " + baseUrl);
         Log.logInfo("Request End Point: " + endPoint);
         Log.logInfo("Request method: " + method);
     }
@@ -46,6 +44,12 @@ public class RestRequest extends BaseEndPoints {
                 break;
             case PUT:
                 response = request.put(endPoint);
+                break;
+            case PATCH:
+                response = request.patch(endPoint);
+                break;
+            case DELETE:
+                response = request.delete(endPoint);
                 break;
             default:
                 throw new RuntimeException("The method is not defined");

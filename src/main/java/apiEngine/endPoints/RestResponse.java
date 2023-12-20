@@ -16,15 +16,17 @@ public class RestResponse<T> implements IRestResponse<T> {
     @SuppressWarnings("unchecked")
     public RestResponse(Class<T> t, Response response) {
         this.response = response;
-        try {
-            if (t.isArray()) {
-                Class<?> componentType = t.getComponentType();
-                this.data = (T) Array.newInstance(componentType, 0);
-            } else {
-                this.data = t.getDeclaredConstructor().newInstance();
+        if (t != null) {
+            try {
+                if (t.isArray()) {
+                    Class<?> componentType = t.getComponentType();
+                    this.data = (T) Array.newInstance(componentType, 0);
+                } else {
+                    this.data = t.getDeclaredConstructor().newInstance();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
