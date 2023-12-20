@@ -21,7 +21,7 @@ public class RestRequest extends BaseEndPoints {
     public RestRequest() {
         RestAssured.baseURI = baseUrl;
         request = RestAssured.given();
-        Log.logInfo("Create rest assured request object");
+        Log.logInfo("Create rest assured request object: " + this.getClass().getName());
         buildHeader(Header.CONTENT_TYPE.getHeaderName(), Header.CONTENT_TYPE.getHeaderValue());
     }
 

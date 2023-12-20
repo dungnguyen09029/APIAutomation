@@ -19,7 +19,7 @@ public class AuthSteps extends BaseSteps {
     @When("User sent authentication and receive token")
     public void getAuthenticationToken() {
         getScenarioContext().getDataManager().getAuthentication().getAdminAuthentication();
-        IRestResponse<Token> restResponse = authentication.authentication(getScenarioContext()
+        IRestResponse<Token> restResponse = authentication.sentAuthentication(getScenarioContext()
                 .getDataManager().getAuthentication().getAdminAuthentication());
         getScenarioContext().setContext(Context.TOKEN, restResponse.getBody().token);
     }
