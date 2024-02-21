@@ -1,0 +1,30 @@
+{
+  "booking": {
+    "firstname" : "Jim",
+    "lastname" : "Brown",
+    "totalprice" : 111,
+    "depositpaid" : true,
+    "bookingdates" : {
+      "checkin" : "2018-01-01",
+      "checkout" : "2019-01-01"
+    },
+    "additionalneeds" : "Breakfast"
+  },
+  "bookingUpdate": {
+    "firstname" : "Dung",
+    "lastname" : "Nguyen",
+    "totalprice" : 2000,
+    "depositpaid" : false,
+    "bookingdates" : {
+      "checkin" : "2018-01-01",
+      "checkout" : "2019-01-01"
+    },
+    "additionalneeds" : "Lunch"
+  },
+
+  "bookingPartialUpdate": {
+    "firstname" : "John",
+    "lastname" : "Connor"
+  }
+
+}
