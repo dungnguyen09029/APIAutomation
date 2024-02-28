@@ -69,4 +69,6 @@ the variable ${xmlFilePath} for dynamic file path: to replace it in cmd command.
 mvn test -DxmlFilePath='<xml file name>'. Note that if remove '', it will consider .xml a command and it cannot found 
 any mvn command like .xml. Keep '' will help it understand it is a full string.
 
+Example: mvn test -DxmlFilePath='TestSuiteNG2.xml'
+
 The xml file must be in the same folder as pom file
