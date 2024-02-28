@@ -61,3 +61,14 @@ The SoftAssert in AssertUtils is for assert without throwing error that stop cuc
 
 For parallel execution, Using testNG .xml file to run parallel. I try to test with DataProvider of cucumber, but it is not 
 working with testNG as expected. Need to find out
+
+------------------------------------------------------------------------------------------------------------------------
+
+maven-surefire-plugin in pom is needed to run maven command line
+the variable ${xmlFilePath} for dynamic file path: to replace it in cmd command. Add a -D in front of it
+mvn test -DxmlFilePath='<xml file name>'. Note that if remove '', it will consider .xml a command and it cannot found 
+any mvn command like .xml. Keep '' will help it understand it is a full string.
+
+Example: mvn test -DxmlFilePath='TestSuiteNG2.xml'
+
+The xml file must be in the same folder as pom file
