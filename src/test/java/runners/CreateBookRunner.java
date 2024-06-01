@@ -11,10 +11,11 @@ import utilities.Log;
         glue = {"stepDefinitions"},
         tags = "@API",
         plugin = {
-                "pretty",
-                "html:target/cucumber-reports/CreateBookRunner.html",
-                "rerun:target/cucumber-reports/rerun.txt",
-                "json:target/cucumber-reports/CreateBookRunner.json"
+//                "pretty",
+//                "html:target/cucumber-reports/CreateBookRunner.html",
+//                "rerun:target/cucumber-reports/rerun.txt",
+//                "json:target/cucumber-reports/CreateBookRunner.json"
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 )
 
